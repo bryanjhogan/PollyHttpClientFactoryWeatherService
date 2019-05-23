@@ -11,18 +11,17 @@ namespace WeatherService.Controllers
     [Route("[controller]")]
     public class WeatherController : ControllerBase
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
 
-        public WeatherController(IHttpClientFactory httpClientFactory)
+        public WeatherController(HttpClient httpClient)
         {
-            _httpClientFactory = httpClientFactory;
+            _httpClient = httpClient;
         }
 
         [HttpGet("{locationId}")]
         public async Task<ActionResult> Get(int locationId)
         {
-            var httpClient = _httpClientFactory.CreateClient("TemperatureService");
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"temperature/{locationId}");
+            HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync($"temperature/{locationId}");
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -36,8 +35,6 @@ namespace WeatherService.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] WeatherInfo weatherModel) 
         {
-            var httpClient = _httpClientFactory.CreateClient("TemperatureService");
-
             var temperatureInfo = new TemperatureInfo
             {
                 LocationId = weatherModel.LocationId,
@@ -48,7 +45,7 @@ namespace WeatherService.Controllers
             string temperatureJson = JsonConvert.SerializeObject(temperatureInfo);
             HttpContent httpContent = new StringContent(temperatureJson, Encoding.UTF8, "application/json");
 
-            var httpResponseMessage = await httpClient.PostAsync("temperature", httpContent);
+            var httpResponseMessage = await _httpClient.PostAsync("temperature", httpContent);
 
             return StatusCode((int) httpResponseMessage.StatusCode);
         }
@@ -56,9 +53,7 @@ namespace WeatherService.Controllers
         [HttpDelete("{locationId}")]
         public async Task<ActionResult> Delete(int locationId)
         {
-            var httpClient = _httpClientFactory.CreateClient("TemperatureService");
-
-            HttpResponseMessage httpResponseMessage = await httpClient.DeleteAsync($"temperature/{locationId}");
+            HttpResponseMessage httpResponseMessage = await _httpClient.DeleteAsync($"temperature/{locationId}");
 
             return StatusCode((int)httpResponseMessage.StatusCode);
         }
