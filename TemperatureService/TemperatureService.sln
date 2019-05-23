@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{BAC1623C-F75D-4EAD-BEB0-A1E3C326BD5F}") = "TemperatureService", "TemperatureService.csproj", "{DB2C2138-0CC7-4DF4-9A14-4B5C7B6271A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB2C2138-0CC7-4DF4-9A14-4B5C7B6271A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB2C2138-0CC7-4DF4-9A14-4B5C7B6271A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB2C2138-0CC7-4DF4-9A14-4B5C7B6271A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2C2138-0CC7-4DF4-9A14-4B5C7B6271A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE7F3380-CF1E-4403-89F4-4F152954A3BD}
+	EndGlobalSection
+EndGlobal
